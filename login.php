@@ -47,6 +47,28 @@ if (isset($_POST['loginUser'])) {
     }
 }
 
+
+require_once 'lib/user.php';
+
+$email = $_POST['email'] ?? null;
+$password = $_POST['password'] ?? null;
+
+if ($email && $password) {
+    $user = verifyUserLoginPassword($pdo, 'alice@gmail.com', 'ABC123');
+
+    if ($user !== false) {
+        echo "Connexion réussie";
+    } else {
+        echo "Email ou mot de passe incorrect";
+    }
+} else {
+    echo "Veuillez remplir les champs manquants";
+}
+
+
+
+
+
 ?>
 <h1>Login</h1>
 

@@ -6,7 +6,20 @@ require_once __DIR__ . "/templates/header.php";
 
 
 //@todo On doit récupérer l'id en paramètre d'url et appeler la fonction getArticleById récupérer l'article
+$id = isset($_GET['id']) ? (int ) $_GET['id'] : 0;
 
+if ($id <=0){
+    echo "<p>Article introuvable</p>";
+    require_once __DIR__."template/footer.php";
+    exit;
+}
+
+$artcle = getArticleByID($pdo, $id);
+if (!$article) {
+ echo "<p>Article introuvable</p>";
+ require_once __DIR__ ."templates/footer.php";
+ exit;
+}
 ?>
 
 

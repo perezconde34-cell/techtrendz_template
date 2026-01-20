@@ -8,13 +8,27 @@ require_once 'templates/header.php';
 
 $errors = [];
 $messages = [];
+
 if (isset($_POST['addUser'])) {
+    if (!empty($_POST)) {
+     $result = addUser($_POST);
+
+        if ($result === true) {
+            $messages[] = "Merci pour l'inscription";
+        } else {
+            $errors[] = "Une erreur s'est produite";
+        }
+    } else {
+        $errors[] = "Le formulaire n'est pas valide";
+    }
+}
+
     /*
         @todo On appelle addUser pour ajouter l'utilisateur
         si true a été retourné, on affiche un message "Merci pour votre inscription"
         sinon on affiche une erreur "Une erreur s'est produite lors de votre inscription"
     */
-}
+
 
 ?>
     <h1>Inscription</h1>
@@ -36,7 +50,7 @@ if (isset($_POST['addUser'])) {
             <input type="email" class="form-control" id="email" name="email">
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Mot de psse</label>
+            <label for="password" class="form-label">Mot de pse</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
 
